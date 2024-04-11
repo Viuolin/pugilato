@@ -1,21 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany._progettolibreria_4a;
 
 import eccezioni.EccezionePosizioneNonValida;
 import eccezioni.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Rappresenta uno scaffale costituito da
  * NUM_RIPIANI mensole, ciascuna delle quali può 
  * contenere dei libri.
- * @author gian
  */
-public class Scaffale 
+public final class Scaffale 
 {
     private Mensola[] ripiani; //array di mensole
     private final static int NUM_RIPIANI=5;
@@ -72,7 +65,12 @@ public class Scaffale
         se la posizione non è valida --> return -1
         se la posizione è già occupata --> return -2
         se ok  return 0
-
+     * @param libro
+     * @param ripiano
+     * @param posizione
+     * @throws eccezioni.EccezioneRipianoNonValido
+     * @throws eccezioni.EccezionePosizioneNonValida
+     * @throws eccezioni.EccezionePosizioneOccupata
      */
     
     public void setLibro(Libro libro, int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneOccupata 
@@ -98,6 +96,9 @@ public class Scaffale
      * se la posizione non esiste oppure se
      * nei dati ripiano/posizione non è presente il libro.
      * Negli altri casi restituisce il libro.
+     * @throws eccezioni.EccezioneRipianoNonValido
+     * @throws eccezioni.EccezionePosizioneNonValida
+     * @throws eccezioni.EccezionePosizioneVuota
      */
     public Libro getLibro(int ripiano, int posizione) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota
     {
@@ -113,11 +114,9 @@ public class Scaffale
      * determinata posizione
      * @param ripiano
      * @param posizione
-     * @return 
-     * se il ripiano non è valido --> return -3
-     * se la posizione non è valida --> return -1
-     * se la posizione è vuota --> return -2
-     * se il volume è rimosso correttamente --> return 0
+     * @throws eccezioni.EccezioneRipianoNonValido
+     * @throws eccezioni.EccezionePosizioneNonValida
+     * @throws eccezioni.EccezionePosizioneVuota
      */
     public void rimuoviLibro(int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota
     {
@@ -207,6 +206,7 @@ public class Scaffale
     * @return 
     * 
     */
+    @Override
    public String toString()
    {
        String s="";

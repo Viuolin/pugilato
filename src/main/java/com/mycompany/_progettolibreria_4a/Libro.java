@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany._progettolibreria_4a;
-
-/**
- * Classe che rappresenta un libro
- * @author gian
- */
 public class Libro 
 {
     
@@ -122,6 +113,7 @@ public class Libro
      * @return 
      */
     
+    @Override
     public String toString()
     {
         String s;
