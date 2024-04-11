@@ -3,6 +3,8 @@ package com.mycompany._progettolibreria_4a;
 import eccezioni.EccezionePosizioneNonValida;
 import eccezioni.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilita.TextFile;
 
 /**
@@ -280,22 +282,24 @@ public final class Scaffale{
        }
        return elencoLibriPresenti;
    }
-    public void ExportCSV(String name) throws IOException{
+    public void ExportCSV(String name) throws IOException, FileException{
         TextFile f0 = new TextFile(name,'W');
         Libro l0;
         for(int i = 0; i<getNumRipiani(); i++){
             for(int j = 0; j<getNumMaxLibri(); j++){
                 try {
                     l0=this.getLibro(i, j);
+                    f0.toFile(i+";  "+j+";  "+l0.getTitolo()+";  "+l0.getAutore()+";  "+l0.getNumeroPagine());
                 } catch (EccezionePosizioneVuota ex) {
-                    
+                    //non succederà mai
                 } catch (EccezioneRipianoNonValido ex) {
-                    
+                    //non succederà mai
                 } catch (EccezionePosizioneNonValida ex) {
-                    
+                    //non fare nulla
                 }
             }
         }
+        f0.closeFile();
     }
    
    

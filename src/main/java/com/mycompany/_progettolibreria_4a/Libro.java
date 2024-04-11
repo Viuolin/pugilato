@@ -24,8 +24,7 @@ public class Libro
      * Costruttore di copia
      * @param libro Il libro da copiare
      */
-    public Libro (Libro libro)
-    {
+    public Libro (Libro libro){
         this.titolo=libro.getTitolo();
         this.autore=libro.getAutore();
         this.numeroPagine=libro.getNumeroPagine();
@@ -83,8 +82,7 @@ public class Libro
      * Calcola il prezzo del libro
      * @return il prezzo del libro
      */
-    public double prezzo()
-    {
+    public double prezzo(){
         double p;
         p=COSTO_FISSO+(this.numeroPagine*costoPagina);
         return p;
@@ -94,8 +92,7 @@ public class Libro
      * Assegna il costo per ogni pagina del libro
      * @param costoP 
      */
-    public static void setCostoPagina(double costoP)
-    {
+    public static void setCostoPagina(double costoP){
         costoPagina=costoP;
     }
     
@@ -103,8 +100,7 @@ public class Libro
      * 
      * @return Il costo fisso per ogni libro
      */
-    public double getCostoFisso()
-    {
+    public double getCostoFisso(){
         return COSTO_FISSO;
     }
     
@@ -114,8 +110,7 @@ public class Libro
      */
     
     @Override
-    public String toString()
-    {
+    public String toString(){
         String s;
         s=getTitolo()+";"+getAutore()+";"+getNumeroPagine()+";"+prezzo()+" €";
         return s;

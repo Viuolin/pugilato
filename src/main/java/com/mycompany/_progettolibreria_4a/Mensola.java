@@ -1,15 +1,13 @@
 package com.mycompany._progettolibreria_4a;
 import eccezioni.*;
-public final class Mensola 
-{
+public final class Mensola{
     private Libro[] volumi;
     private final static int NUM_MAX_VOLUMI=15;
     
     /**
      * è una mensola
      */
-    public Mensola()
-    {
+    public Mensola(){
         volumi=new Libro[NUM_MAX_VOLUMI];
     }
     
@@ -19,23 +17,18 @@ public final class Mensola
      * Costruttore di copia
      * @param mens 
      */
-    public Mensola(Mensola mens)
-    {
+    public Mensola(Mensola mens){
          volumi=new Libro[NUM_MAX_VOLUMI];
          Libro lib;
-         for(int i=0;i<mens.getNumMaxVolumi();i++)
-         {
-             try 
-             {
+         for(int i=0;i<mens.getNumMaxVolumi();i++){
+             try{
                  lib=mens.getVolume(i);
                  volumi[i]=lib;
              } 
-             catch (EccezionePosizioneNonValida ex) 
-             {
+             catch (EccezionePosizioneNonValida ex){
                  //Non fare nulla, non avverrà mai.
              } 
-             catch (EccezionePosizioneVuota ex) 
-             {
+             catch (EccezionePosizioneVuota ex){
                  //non fare nulla
              }
              
@@ -55,8 +48,7 @@ public final class Mensola
      * @throws eccezioni.EccezionePosizioneNonValida 
      * @throws eccezioni.EccezionePosizioneOccupata 
      */
-    public Mensola(Libro[] elencoLibri ) throws EccezionePosizioneNonValida, EccezionePosizioneOccupata
-    {
+    public Mensola(Libro[] elencoLibri ) throws EccezionePosizioneNonValida, EccezionePosizioneOccupata{
         volumi=new Libro[NUM_MAX_VOLUMI]; //creo arry vuota nella mensola
         
         //Il numero di libri da aggiungere è 
@@ -67,8 +59,7 @@ public final class Mensola
             numeroLibriDaAggiungere=NUM_MAX_VOLUMI;
         
         //aggiungo i libri dell'array a volumi
-        for(int i=0;i<numeroLibriDaAggiungere;i++)
-        {
+        for(int i=0;i<numeroLibriDaAggiungere;i++){
             setVolume(elencoLibri[i], i);
         } 
     }
@@ -82,17 +73,14 @@ public final class Mensola
      * @throws eccezioni.EccezionePosizioneNonValida
      * @throws eccezioni.EccezionePosizioneOccupata
      */
-    public void setVolume(Libro volume,int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneOccupata
-    {
-        try
-        {
+    public void setVolume(Libro volume,int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneOccupata{
+        try{
             if (volumi[posizione]!=null)
                 throw new EccezionePosizioneOccupata();
             volumi[posizione]=new Libro(volume);
            // return posizione;
         }
-        catch(ArrayIndexOutOfBoundsException e)
-        {
+        catch(ArrayIndexOutOfBoundsException e){
             throw new eccezioni.EccezionePosizioneNonValida();
         } 
     }
@@ -107,25 +95,21 @@ public final class Mensola
      * @throws eccezioni.EccezionePosizioneVuota
      * 
      */
-    public Libro getVolume(int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneVuota
-    {
+    public Libro getVolume(int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneVuota{
      /*   if (posizione<0 || posizione>=NUM_MAX_VOLUMI)
             return null;
       */
      /*   if (volumi[posizione]==null)
             return null;
      */
-     try
-     {
+     try{
         return new Libro(volumi[posizione]); 
      }
-     catch (ArrayIndexOutOfBoundsException e)
-     {
+     catch (ArrayIndexOutOfBoundsException e){
          //Se la posizione non è valida sollevo l'eccezione
          throw new EccezionePosizioneNonValida();
      }
-     catch (NullPointerException e)
-     {
+     catch (NullPointerException e){
          //Se la posizione non contiene un libro
          throw new EccezionePosizioneVuota();
      }
@@ -140,21 +124,18 @@ se la posizione è già vuota --> return -2
      * @throws eccezioni.EccezionePosizioneNonValida
      * @throws eccezioni.EccezionePosizioneVuota
      */
-    public void rimuoviVolume(int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneVuota
-    {
+    public void rimuoviVolume(int posizione) throws EccezionePosizioneNonValida, EccezionePosizioneVuota{
     
     /*    if (posizione<0 || posizione>=NUM_MAX_VOLUMI)
             return -1; //posizione non valida 
     */
-        try
-        {
+        try{
             if (volumi[posizione]==null)
                throw new EccezionePosizioneVuota();
             volumi[posizione]=null;
             //return posizione; 
         }
-        catch(ArrayIndexOutOfBoundsException e)
-        {
+        catch(ArrayIndexOutOfBoundsException e){
             throw new EccezionePosizioneNonValida();
         } 
     }
@@ -163,17 +144,14 @@ se la posizione è già vuota --> return -2
      * restituisce il numero massimo di volumi presenti nella mensola 
      * @return 
      */
-    public int getNumMaxVolumi() 
-    {
+    public int getNumMaxVolumi(){
         return NUM_MAX_VOLUMI;
     }
     
-    public int getNumVolumi()
-    {
+    public int getNumVolumi(){
         int contaLibri;
         contaLibri=0;
-        for (int i=0; i<NUM_MAX_VOLUMI; i++)
-        {
+        for (int i=0; i<NUM_MAX_VOLUMI; i++){
             if (volumi[i]!=null )
                 contaLibri++;
             
@@ -181,12 +159,9 @@ se la posizione è già vuota --> return -2
         return contaLibri;
     }
     
-    public boolean presenzaTitolo(String titolo)
-    {
-        for (int i=0;i<getNumMaxVolumi();i++)
-        {
-            if (volumi[i]!=null) //Attenzione!! serve questo!
-            {
+    public boolean presenzaTitolo(String titolo){
+        for (int i=0;i<getNumMaxVolumi();i++){
+            if (volumi[i]!=null){//Attenzione!! serve questo!
                 if (volumi[i].getTitolo().equalsIgnoreCase(titolo))
                 return true;
             }
@@ -200,11 +175,9 @@ se la posizione è già vuota --> return -2
      * @return 
      */
     @Override
-    public  String toString()
-    {
+    public  String toString(){
         String s="";
-        for(int i=0;i<NUM_MAX_VOLUMI;i++)
-        {
+        for(int i=0;i<NUM_MAX_VOLUMI;i++){
             s=s+i+"\t--> ";
             if (volumi[i]!=null)
                 s=s+volumi[i].toString()+"\n";
