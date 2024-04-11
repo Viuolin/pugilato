@@ -2,57 +2,49 @@ package com.mycompany._progettolibreria_4a;
 
 import eccezioni.EccezionePosizioneNonValida;
 import eccezioni.*;
+import java.io.IOException;
+import utilita.TextFile;
 
 /**
  * Rappresenta uno scaffale costituito da
  * NUM_RIPIANI mensole, ciascuna delle quali può 
  * contenere dei libri.
  */
-public final class Scaffale 
-{
+public final class Scaffale{
     private Mensola[] ripiani; //array di mensole
     private final static int NUM_RIPIANI=5;
     
 /**
  * Costruttore
  */    
-    public Scaffale()
-    {
+    public Scaffale(){
         ripiani=new Mensola[NUM_RIPIANI];
         //Istanzio una mensola (vuota) per ciascun ripiano
-        for(int i=0;i<NUM_RIPIANI;i++)
-        {
+        for(int i=0;i<NUM_RIPIANI;i++){
             ripiani[i]=new Mensola();
         }
     }
     
-    public Scaffale(Scaffale scaf) 
-    {
+    public Scaffale(Scaffale scaf){
          ripiani=new Mensola[NUM_RIPIANI];
          Libro lib;
-         for(int i=0;i<NUM_RIPIANI;i++)
-         {
+         for(int i=0;i<NUM_RIPIANI;i++){
             ripiani[i]=new Mensola();
-            for (int j=0;j<scaf.getNumMaxLibri(i);j++)
-            {
-                try 
-                {
+            for (int j=0;j<scaf.getNumMaxLibri(i);j++){
+                try{
                     lib=scaf.getLibro(i, j);
                     this.setLibro(lib, i, j);
                 } 
-                catch (EccezioneRipianoNonValido ex) 
-                {
+                catch (EccezioneRipianoNonValido ex){
                     //Non può essere
                 } 
-                catch (EccezionePosizioneNonValida ex) 
-                {
+                catch (EccezionePosizioneNonValida ex){
                     //non può essere
                 } 
-                catch (EccezionePosizioneVuota ex) 
-                {
+                catch (EccezionePosizioneVuota ex){
                     //non fare nulla
-                } catch (EccezionePosizioneOccupata ex) 
-                {
+                } 
+                catch (EccezionePosizioneOccupata ex){
                     //non fare nulla
                 }
             }     
@@ -73,8 +65,7 @@ public final class Scaffale
      * @throws eccezioni.EccezionePosizioneOccupata
      */
     
-    public void setLibro(Libro libro, int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneOccupata 
-    {
+    public void setLibro(Libro libro, int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneOccupata{
         
         if (ripiano<0 || ripiano >=NUM_RIPIANI)
             throw new EccezioneRipianoNonValido();
@@ -100,8 +91,7 @@ public final class Scaffale
      * @throws eccezioni.EccezionePosizioneNonValida
      * @throws eccezioni.EccezionePosizioneVuota
      */
-    public Libro getLibro(int ripiano, int posizione) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota
-    {
+    public Libro getLibro(int ripiano, int posizione) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota{
         if (ripiano<0 || ripiano>=NUM_RIPIANI)
             throw new EccezioneRipianoNonValido();
         Libro lib;
@@ -118,8 +108,7 @@ public final class Scaffale
      * @throws eccezioni.EccezionePosizioneNonValida
      * @throws eccezioni.EccezionePosizioneVuota
      */
-    public void rimuoviLibro(int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota
-    {
+    public void rimuoviLibro(int ripiano, int posizione ) throws EccezioneRipianoNonValido, EccezionePosizioneNonValida, EccezionePosizioneVuota{
        
         if (ripiano<0 || ripiano >=NUM_RIPIANI)
             throw new EccezioneRipianoNonValido();
@@ -135,8 +124,7 @@ public final class Scaffale
      * presenti nello scaffale
      * @return 
      */
-    public int getNumRipiani()
-    {
+    public int getNumRipiani(){
         return NUM_RIPIANI;
     }
     
@@ -145,11 +133,9 @@ public final class Scaffale
      * contenuti in uno scaffale
      * @return 
      */
-    public int getNumMaxLibri()
-    {
+    public int getNumMaxLibri(){
         int contatore=0;
-        for (int i=0;i<NUM_RIPIANI;i++)
-        {
+        for (int i=0;i<NUM_RIPIANI;i++){
             contatore+=ripiani[i].getNumMaxVolumi();
         }
         
@@ -161,11 +147,9 @@ public final class Scaffale
      * presenti nello scaffale
      * @return 
      */
-    public int getNumLibri()
-    {
+    public int getNumLibri(){
         int contaVolumi=0;
-        for(int i=0;i<NUM_RIPIANI;i++)
-        {
+        for(int i=0;i<NUM_RIPIANI;i++){
             contaVolumi+=ripiani[i].getNumVolumi();
         }
         return contaVolumi;
@@ -179,8 +163,7 @@ public final class Scaffale
     *  Se il ripiano non esiste --> return -1
     *  
     */
-   public int getNumLibri(int ripiano)
-   {
+   public int getNumLibri(int ripiano){
        if (ripiano<0 || ripiano>NUM_RIPIANI)
            return -1;
        return ripiani[ripiano].getNumVolumi();
@@ -194,8 +177,7 @@ public final class Scaffale
     *  Se il ripiano non esiste --> return -1
     *  
     */
-   public int getNumMaxLibri(int ripiano)
-   {
+   public int getNumMaxLibri(int ripiano){
         if (ripiano<0 || ripiano>NUM_RIPIANI)
            return -1;
        return ripiani[ripiano].getNumMaxVolumi();
@@ -207,46 +189,36 @@ public final class Scaffale
     * 
     */
     @Override
-   public String toString()
-   {
+   public String toString(){
        String s="";
-       for (int i=0;i<NUM_RIPIANI;i++)
-       {
+       for (int i=0;i<NUM_RIPIANI;i++){
            s+="Ripiano "+i+":\n"+ripiani[i].toString();
        }
        return s;
    }
    
    
-   public String[] elencoTitoliAutore(String autore)
-   {
+   public String[] elencoTitoliAutore(String autore){
        Libro lib;
        String[] elencoTitoliAutore;
        
        int contaLibriAutore=0;
-       for (int i=0;i<NUM_RIPIANI;i++)
-       {
-           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++)
-           {
-               try 
-               {
+       for (int i=0;i<NUM_RIPIANI;i++){
+           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++){
+               try{
                    lib=this.getLibro(i, j);
-                   if (lib.getAutore().equalsIgnoreCase(autore))
-                   {
+                   if (lib.getAutore().equalsIgnoreCase(autore)){
                        contaLibriAutore++;  //sarà la dimensione dell'array
                    }
                    
                } 
-               catch (EccezioneRipianoNonValido ex) 
-               {
+               catch (EccezioneRipianoNonValido ex){
                  //Non succederà mai
                } 
-               catch (EccezionePosizioneNonValida ex) 
-               {
+               catch (EccezionePosizioneNonValida ex){
                      //Non succederà mai
                } 
-               catch (EccezionePosizioneVuota ex) 
-               {
+               catch (EccezionePosizioneVuota ex){
                   //non fare nulla...
                }
                
@@ -261,29 +233,22 @@ public final class Scaffale
        
        //Copio i titoli dell'autore nell'array di titoli
        contaLibriAutore=0;
-       for (int i=0;i<NUM_RIPIANI;i++)
-       {
-           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++)
-           {
-               try 
-               {
+       for (int i=0;i<NUM_RIPIANI;i++){
+           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++){
+               try{
                    lib=this.getLibro(i, j);
-                   if (lib.getAutore().equalsIgnoreCase(autore))
-                   {
+                   if (lib.getAutore().equalsIgnoreCase(autore)){
                        elencoTitoliAutore[contaLibriAutore]=lib.getTitolo();
                        contaLibriAutore++;  //sarà la dimensione dell'array
                    }
                } 
-               catch (EccezioneRipianoNonValido ex) 
-               {
+               catch (EccezioneRipianoNonValido ex){
                    //non può essere
                } 
-               catch (EccezionePosizioneNonValida ex) 
-               {
+               catch (EccezionePosizioneNonValida ex){
                     //non può essere
                } 
-               catch (EccezionePosizioneVuota ex) 
-               {
+               catch (EccezionePosizioneVuota ex){
                    //non fare nulla...
                } 
            }
@@ -291,38 +256,47 @@ public final class Scaffale
        return elencoTitoliAutore;
    }
    
-   public Libro[] elencoLibriPresenti()
-   {
+   public Libro[] elencoLibriPresenti(){
        Libro[] elencoLibriPresenti=new Libro[getNumLibri()];
        Libro lib;
        int c=0; //contatore
-       for (int i=0;i<getNumRipiani();i++)
-       {
-           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++)
-           {
-               try 
-               {
+       for (int i=0;i<getNumRipiani();i++){
+           for(int j=0;j<ripiani[i].getNumMaxVolumi();j++){
+               try{
                    lib=getLibro(i, j);
                    elencoLibriPresenti[c]=lib;
                    c++;
                } 
-               catch (EccezioneRipianoNonValido ex) 
-               {
+               catch (EccezioneRipianoNonValido ex){
                    //non può essere
                } 
-               catch (EccezionePosizioneNonValida ex) 
-               {
+               catch (EccezionePosizioneNonValida ex){
                    //non può essere
                } 
-               catch (EccezionePosizioneVuota ex) 
-               {
+               catch (EccezionePosizioneVuota ex){
                    //non fare nulla
                }     
            }
        }
        return elencoLibriPresenti;
    }
-   
+    public void ExportCSV(String name) throws IOException{
+        TextFile f0 = new TextFile(name,'W');
+        Libro l0;
+        for(int i = 0; i<getNumRipiani(); i++){
+            for(int j = 0; j<getNumMaxLibri(); j++){
+                try {
+                    l0=this.getLibro(i, j);
+                } catch (EccezionePosizioneVuota ex) {
+                    
+                } catch (EccezioneRipianoNonValido ex) {
+                    
+                } catch (EccezionePosizioneNonValida ex) {
+                    
+                }
+            }
+        }
+    }
    
    
 }
