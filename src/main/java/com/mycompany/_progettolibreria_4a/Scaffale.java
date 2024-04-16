@@ -319,11 +319,11 @@ public final class Scaffale{
             Libro l0 = new Libro(titolo, autore, nPagine);
             this.setLibro(l0, ripiano, posizione);
         } catch (EccezioneRipianoNonValido ex) {
-            
+            // libro non messo in scaffale
         } catch (EccezionePosizioneNonValida ex) {
-            
+            // libro non messo in scaffale
         } catch (EccezionePosizioneOccupata ex) {
-            
+            // libro non messo in scaffale
         } catch (FileException ex) {
             
         }
