@@ -309,7 +309,7 @@ public final class Scaffale{
        String titolo,autore;
        int ripiano,nPagine,posizione;
        try {
-        while(f0.fromFile()=="\nclose"){
+        while(f0.fromFile().equals("\nclose")){
             try{
                 rigaLetta = f0.fromFile();
                 arrayS = rigaLetta.split(";");
