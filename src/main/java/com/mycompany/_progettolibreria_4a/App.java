@@ -5,10 +5,7 @@ import eccezioni.EccezionePosizioneOccupata;
 import eccezioni.EccezionePosizioneVuota;
 import eccezioni.EccezioneRipianoNonValido;
 import eccezioni.FileException;
-import java.awt.BorderLayout;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utilita.ConsoleInput;
 import utilita.Menu;
 import utilita.Ordinatore;
@@ -32,15 +29,15 @@ public class App {
         Libro[] libriPresenti;
         String nomeFile = "volumi.csv";
         
-        vociMenu[0]="0\t--> Esci";
-        vociMenu[1]="1\t--> Visualizza tutti i volumi presenti";
-        vociMenu[2]="2\t--> Aggiungi volume";
-        vociMenu[3]="3\t--> Visualizza volume (ripiano, posizione) ";
-        vociMenu[4]="4\t--> Elimina volume (ripiano, posizione)";
-        vociMenu[5]="5\t--> Mostra libri di un autore";
-        vociMenu[6]="6\t--> Mostra libri presenti in ordine alfabetico di titolo";
-        vociMenu[7]="7\t--> Esporta i volumi su file CSV";
-        vociMenu[8]="8\t--> Importa i volumi da file CSV";
+        vociMenu[0]="0\t = Esci";
+        vociMenu[1]="1\t = Visualizza tutti i volumi presenti";
+        vociMenu[2]="2\t = Aggiungi volume";
+        vociMenu[3]="3\t = Visualizza volume (ripiano, posizione) ";
+        vociMenu[4]="4\t = Elimina volume (ripiano, posizione)";
+        vociMenu[5]="5\t = Mostra libri di un autore";
+        vociMenu[6]="6\t = Mostra libri presenti in ordine alfabetico di titolo";
+        vociMenu[7]="7\t = Esporta i volumi su file CSV";
+        vociMenu[8]="8\t = Importa i volumi da file CSV";
         
         menu=new Menu(vociMenu);
        
@@ -57,13 +54,13 @@ public class App {
                 case 2 -> {
                     //aggiungivolume
                     try{
-                        System.out.println("Titolo --> ");
+                        System.out.println("Titolo = ");
                         titolo=tastiera.readString();
-                        System.out.println("Autore --> ");
+                        System.out.println("Autore = ");
                         autore=tastiera.readString();
                         do{
                             try{
-                                System.out.println("Numero pagine --> ");
+                                System.out.println("Numero pagine = ");
                                 numeroPagine=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -74,7 +71,7 @@ public class App {
                         
                         do{
                             try{
-                                System.out.println("Ripiano (0..4) --> ");
+                                System.out.println("Ripiano (0..4) = ");
                                 ripiano=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -85,7 +82,7 @@ public class App {
                         
                         do{
                             try{
-                                System.out.println("Posizione (0..14) --> ");
+                                System.out.println("Posizione (0..14) = ");
                                 posizione=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -119,7 +116,7 @@ public class App {
                         do{
                             try
                             {
-                                System.out.println("Ripiano (0..4) --> ");
+                                System.out.println("Ripiano (0..4) = ");
                                 ripiano=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -130,7 +127,7 @@ public class App {
                         
                         do{
                             try{
-                                System.out.println("Posizione (0..14) --> ");
+                                System.out.println("Posizione (0..14) = ");
                                 posizione=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -161,7 +158,7 @@ public class App {
                     try{
                         do{
                             try{
-                                System.out.println("Ripiano (0..4) --> ");
+                                System.out.println("Ripiano (0..4) = ");
                                 ripiano=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -172,7 +169,7 @@ public class App {
                         
                         do{
                             try{
-                                System.out.println("Posizione (0..14) --> ");
+                                System.out.println("Posizione (0..14) = ");
                                 posizione=tastiera.readInt();
                                 break; //se input ok, esci dal ciclo
                             }
@@ -201,7 +198,7 @@ public class App {
                     //mostra libri autore
                     
                     try{
-                        System.out.println("Autore --> ");
+                        System.out.println("Autore = ");
                         autore=tastiera.readString();
                         elencoTitoliAutore=s1.elencoTitoliAutore(autore);
                         if(elencoTitoliAutore==null)

@@ -3,8 +3,6 @@ package com.mycompany._progettolibreria_4a;
 import eccezioni.EccezionePosizioneNonValida;
 import eccezioni.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utilita.TextFile;
 
 /**

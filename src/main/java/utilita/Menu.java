@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilita;
 
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * 
- * @author Studente
  * Rapprensenta un menu costituito da un elenco di voci. 
  * Il metodo elencoVoci è un array di String cdove ogni elemento
  * costituisce una delle voci.
@@ -28,8 +20,8 @@ import java.util.logging.Logger;
  */
 public class Menu 
 {
-    private String[] elencoVoci;
-    private int numeroVoci;
+    private final String[] elencoVoci;
+    private final int numeroVoci;
     
     
    /**
@@ -41,10 +33,7 @@ public class Menu
     {
         numeroVoci=elenco.length;
         elencoVoci=new String[numeroVoci];
-        for(int i=0;i<numeroVoci;i++)
-        {
-            elencoVoci[i]=elenco[i]; 
-        }
+        System.arraycopy(elenco, 0, elencoVoci, 0, numeroVoci);
     }
     /**
      * Metodo che consente di scegliere una voce fra quelle del menu.
@@ -58,7 +47,6 @@ public class Menu
         ConsoleInput tastiera=new ConsoleInput();
         
         int scelta = 0;
-        String sceltaStringa;
         boolean sceltaOK=true;
         
         do
