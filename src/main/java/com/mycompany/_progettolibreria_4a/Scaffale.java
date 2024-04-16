@@ -299,6 +299,7 @@ public final class Scaffale{
                 }
             }
         }
+        f0.toFile("\nclose");
         f0.closeFile();
     }
    public void ImportCSV(String name) throws IOException{
@@ -307,29 +308,29 @@ public final class Scaffale{
        String[] arrayS;
        String titolo,autore;
        int ripiano,nPagine,posizione;
-       
-        try {
-            rigaLetta = f0.fromFile();
-            arrayS = rigaLetta.split(";");
-            ripiano = Integer.parseInt(arrayS[0]);
-            posizione = Integer.parseInt(arrayS[1]);
-            titolo = arrayS[2];
-            autore = arrayS[3];
-            nPagine = Integer.parseInt(arrayS[4]);
-            Libro l0 = new Libro(titolo, autore, nPagine);
-            this.setLibro(l0, ripiano, posizione);
-        } catch (EccezioneRipianoNonValido ex) {
-            // libro non messo in scaffale
-        } catch (EccezionePosizioneNonValida ex) {
-            // libro non messo in scaffale
-        } catch (EccezionePosizioneOccupata ex) {
-            // libro non messo in scaffale
-        } catch (FileException ex) {
-            
+       try {
+        while(f0.fromFile()=="\nclose"){
+            try{
+                rigaLetta = f0.fromFile();
+                arrayS = rigaLetta.split(";");
+                ripiano = Integer.parseInt(arrayS[0]);
+                posizione = Integer.parseInt(arrayS[1]);
+                titolo = arrayS[2];
+                autore = arrayS[3];
+                nPagine = Integer.parseInt(arrayS[4]);
+                Libro l0 = new Libro(titolo, autore, nPagine);
+                this.setLibro(l0, ripiano, posizione);
+            } catch (EccezioneRipianoNonValido ex) {
+                // libro non messo in scaffale
+            } catch (EccezionePosizioneNonValida ex) {
+                // libro non messo in scaffale
+            } catch (EccezionePosizioneOccupata ex) {
+                // libro non messo in scaffale
+            }
         }
-       
-       
-               
+       }catch (FileException ex) {
+           
+       }          
    }
    
 }
