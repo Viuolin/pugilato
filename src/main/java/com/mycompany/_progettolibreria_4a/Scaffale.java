@@ -282,7 +282,7 @@ public final class Scaffale{
        }
        return elencoLibriPresenti;
    }
-    public void ExportCSV(String name) throws IOException, FileException{
+     public void ExportCSV(String name) throws IOException, FileException{
         TextFile f0 = new TextFile(name,'W');
         Libro l0;
         for(int i = 0; i<getNumRipiani(); i++){
@@ -302,7 +302,7 @@ public final class Scaffale{
         f0.toFile("\nclose");
         f0.closeFile();
     }
-   public void ImportCSV(String name) throws IOException{
+    public void ImportCSV(String name) throws IOException{
        TextFile f0 = new TextFile(name, 'R');
        String rigaLetta;
        String[] arrayS;
@@ -331,6 +331,6 @@ public final class Scaffale{
        }catch (FileException ex) {
            
        }          
-   }
+    }
    
 }
