@@ -4,7 +4,10 @@
 
 package com.mycompany.App;
 
-import java.time.LocalDateTime;
+import eccezioni.PosizioneNonValida;
+import eccezioni.PosizioneOccupata;
+import eccezioni.PosizioneVuota;
+import java.time.*;
 
 /**
  *
@@ -13,10 +16,17 @@ import java.time.LocalDateTime;
 public class App
 {
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws PosizioneNonValida, PosizioneOccupata, PosizioneVuota
     {
-        String nome = null, cognome = null;
-        Pugile p1=new Pugile(nome, cognome, args, LocalDateTime.MIN);
-        System.out.println(p1.toString());
+        String nome = "Ryan", cognome = "Garcia";
+        String[] record={"W","W","W","W","W","W","W","W","W","W","W"};
+        LocalDate dataDiNascita=LocalDate.of(1998, Month.AUGUST, 8); 
+        Pugile p1=new Pugile(1, 135, nome, cognome, record, dataDiNascita);
+        Incontro inc1=new Incontro();
+        inc1.setCombattente(p1, 0);
+        inc1.setCombattente(p1, 1);
+        inc1.eliminaCombattente( 0);
+        System.out.println(inc1.toString());
+        
     }
 }

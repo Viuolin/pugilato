@@ -4,7 +4,7 @@
  */
 package com.mycompany.App;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.Month;
 import java.util.logging.Logger;
 
@@ -14,17 +14,41 @@ import java.util.logging.Logger;
  */
 public class Pugile 
 {
+    private int idNumerico, categoriaDiPeso;
     private String nome,cognome;
     private String[] record;
-    LocalDateTime dataDiNascita;
+    LocalDate dataDiNascita;
 
-    public Pugile(String nome, String cognome, String[] record, LocalDateTime dataDiNascita) 
+    public Pugile(int idNumerico, int categoriaDiPeso, String nome, String cognome, String[] record, LocalDate dataDiNascita)
     {
+        this.idNumerico = idNumerico;
+        this.categoriaDiPeso = categoriaDiPeso;
         this.nome = nome;
         this.cognome = cognome;
         this.record = record;
         this.dataDiNascita = dataDiNascita;
     }
+
+    public Pugile(Pugile pugile)
+    {
+        this.idNumerico = pugile.getIdNumerico();
+        this.categoriaDiPeso = pugile.getCategoriaDiPeso();
+        this.nome = pugile.getNome();
+        this.cognome = pugile.getCognome();
+        this.record = pugile.getRecord();
+        this.dataDiNascita = pugile.getDataDiNascita();
+    }
+    public int getIdNumerico() 
+    {
+        return idNumerico;
+    }
+
+    public int getCategoriaDiPeso() 
+    {
+        return categoriaDiPeso;
+    }
+
+   
 
     public String getNome()
     {
@@ -41,10 +65,22 @@ public class Pugile
         return record;
     }
 
-    public LocalDateTime getDataDiNascita()
+    public LocalDate getDataDiNascita()
     {
         return dataDiNascita;
     }
+
+    public void setIdNumerico(int idNumerico)
+    {
+        this.idNumerico = idNumerico;
+    }
+
+    public void setCategoriaDiPeso(int categoriaDiPeso)
+    {
+        this.categoriaDiPeso = categoriaDiPeso;
+    }
+    
+    
 
     public void setNome(String Nome) 
     {
@@ -61,15 +97,17 @@ public class Pugile
         this.record = record;
     }
 
-    public void setDataDiNascita(LocalDateTime dataDiNascita)
+    public void setDataDiNascita(LocalDate dataDiNascita)
     {
         this.dataDiNascita = dataDiNascita;
     }
 
+    
     @Override
     public String toString() 
     {
-        return "Pugile{" + "Nome=" + nome + ", Cognome=" + cognome + ", Record=" + record + ", dataDiNascita=" + dataDiNascita + '}';
+        
+        return "Pugile{" + "Nome=" + nome + ", Cognome=" + cognome +  ", dataDiNascita=" + dataDiNascita + ", categoria di peso " + categoriaDiPeso + " libre" + '}';
     }
     
    
