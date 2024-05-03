@@ -9,7 +9,8 @@ import java.time.Month;
 import java.util.logging.Logger;
 
 /**
- *
+ *rappresenta un pugile
+ * 
  * @author Studente
  */
 public class Pugile 
@@ -60,9 +61,19 @@ public class Pugile
         return cognome;
     }
 
-    public String[] getRecord() 
+    public String[] getRecord()
     {
         return record;
+    }
+    
+    public String visualizzaRecord() 
+    {
+        String s=" record: ";
+        for(int i=0;i<record.length;i++)
+        {
+            s+=record[i];
+        }
+        return s;
     }
 
     public LocalDate getDataDiNascita()
@@ -101,6 +112,30 @@ public class Pugile
     {
         this.dataDiNascita = dataDiNascita;
     }
+    
+    public void AggiornaRecord(boolean vittoria,Pugile pugile)
+    {
+        if(vittoria==true)
+            for(int i=0;i<=pugile.record.length; i++)
+            {
+                if(pugile.record[i]==null)
+                    pugile.record[i]="W";
+            }
+        if(vittoria==false)
+            for(int i=0;i<=pugile.record.length; i++)
+            {
+                if(pugile.record[i]==null)
+                    pugile.record[i]="S";
+            }
+        else
+            for(int i=0;i<=pugile.record.length; i++)
+            {
+                if(pugile.record[i]==null)
+                    pugile.record[i]="P";
+            }
+        
+    }
+    
 
     
     @Override
