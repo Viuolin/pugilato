@@ -19,6 +19,7 @@ public class Pugile
     private String nome,cognome;
     private String[] record;
     LocalDate dataDiNascita;
+    private static final int NUM_MAX_INCONTRI=300;
 
     public Pugile(int idNumerico, int categoriaDiPeso, String nome, String cognome, String[] record, LocalDate dataDiNascita)
     {
@@ -28,6 +29,11 @@ public class Pugile
         this.cognome = cognome;
         this.record = record;
         this.dataDiNascita = dataDiNascita;
+        record=new String[NUM_MAX_INCONTRI];
+        for(int i=0;i<NUM_MAX_INCONTRI;i++)
+        {
+            record[i]=new String();
+        }
     }
 
     public Pugile(Pugile pugile)
@@ -71,6 +77,7 @@ public class Pugile
         String s=" record: ";
         for(int i=0;i<record.length;i++)
         {
+            if(record[i]!=null)
             s+=record[i];
         }
         return s;
@@ -116,22 +123,35 @@ public class Pugile
     public void AggiornaRecord(boolean vittoria,Pugile pugile)
     {
         if(vittoria==true)
-            for(int i=0;i<=pugile.record.length; i++)
+        {
+            for(int i=0;i<pugile.record.length; i++)
             {
                 if(pugile.record[i]==null)
+                {
                     pugile.record[i]="W";
+                    break;
+                }
             }
-        if(vittoria==false)
-            for(int i=0;i<=pugile.record.length; i++)
-            {
-                if(pugile.record[i]==null)
-                    pugile.record[i]="S";
+        }
+                 else if(vittoria==false)
+                 {
+                    for(int i=0;i<pugile.record.length; i++)
+                    {
+                      if(pugile.record[i]==null)
+                     {
+                         pugile.record[i]="L";
+                         break;
+                    }
+            }
             }
         else
-            for(int i=0;i<=pugile.record.length; i++)
+            for(int i=0;i<pugile.record.length; i++)
             {
                 if(pugile.record[i]==null)
+                {
                     pugile.record[i]="P";
+                    break;
+                }
             }
         
     }

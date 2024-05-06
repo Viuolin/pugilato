@@ -24,10 +24,11 @@ public class App
     public static void main(String[] args) throws PosizioneNonValida, PosizioneOccupata, PosizioneVuota, MatchNonValido, combattentiNonInseriti
     {
         String nome = "Ryan", cognome = "Garcia";
-        String[] record={"W ","W ","W ","W ","W ","W ","W ","W ","W ","W ","W "};
+        String[] record1=new String[100];
+        String[] record2=new String[100];
         LocalDate dataDiNascita=LocalDate.of(1998, Month.AUGUST, 8); 
-        Pugile p1=new Pugile(1, 135, nome, cognome, record, dataDiNascita);
-        Pugile p2=new Pugile(2, 135, "Gervonta", "Davis", record, dataDiNascita);
+        Pugile p1=new Pugile(1, 135, nome, cognome, record1, dataDiNascita);
+        Pugile p2=new Pugile(2, 135, "Gervonta", "Davis", record2 , dataDiNascita);
         Incontro inc1=new Incontro();
         inc1.setCombattente(p1, 0);
         inc1.setCombattente(p2, 1);
@@ -42,11 +43,11 @@ public class App
         TextFile f1 = null;
         
         campionatoJacobino.setPugile(p1, 1, 1);
-        campionatoJacobino.setPugile(p2, 2, 0);
+        campionatoJacobino.setPugile(p2, 2, 1);
         System.out.println(p1.visualizzaRecord());
-        
+        System.out.println(p2.toString());
         inc1.setEsito(0);
-        System.out.println(p1.visualizzaRecord());
+        System.out.println(p2.visualizzaRecord());
         
         
         vociMenu[0]="0 -->\tEsci";
